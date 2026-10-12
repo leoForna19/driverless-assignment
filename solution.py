@@ -65,6 +65,29 @@ def associate(map_points: Map, observations: List[Point]) -> List[Tuple[int, int
         tuples, e.g. ``[(0, 12), (3, 5)]`` means that observation 12 was
         generated from map point 0, and observation 5 from map point 3.
     """
+
+    associations = []
+
+    for j in range(len(observations)):
+        mapped_points =[]
+        map_index = None
+        for i in range(len(map_points)):
+            if i==0:
+                distance = math.dist(observations[j],map_points[i])
+                minimum_distance = distance
+                map_index= i
+            elif minimum_distance > math.dist(observations[j],map_points[i]) or i not in mapped_points:
+                distance = math.dist(observations[j],map_points[i])
+                minimum_distance = distance
+                map_index= i
+            else:
+                continue
+
+        mapped_points.append(map_index)
+        associations.append((map_index, j)) 
+                    
+    return associations
+    
     raise NotImplementedError("Step 3 (data association) is yours to implement")
 
 
@@ -88,6 +111,24 @@ def correct_map(
         The corrected map: a list of ``(x, y)`` tuples with the same length
         and the same order as ``map_points``.
     """
+    corrected_map = []
+
+    associations_dict = dict(associations)
+
+    for i in range(len(map_points)):
+
+        map_point = map_points[i]
+
+        if i in associations_dict:
+
+            observation_point = observations[associations_dict[i]]
+            corrected_map.append(tuple((map_point[k] + observation_point[k])/2 for k in range(len(map_point))))
+        
+        else:
+            corrected_map.append(map_point)
+
+    return corrected_map
+    
     raise NotImplementedError("Step 4 (map correction) is yours to implement")
 
 
