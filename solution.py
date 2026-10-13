@@ -79,7 +79,7 @@ def associate(map_points: Map, observations: List[Point]) -> List[Tuple[int, int
             
             distance = math.dist(observations[j],map_points[i])
             
-            if i == 0 or minimum_distance > distance or i not in mapped_points:
+            if (i == 0 or minimum_distance > distance) and i not in mapped_points:
                 minimum_distance = distance
                 map_index= i
             
@@ -156,6 +156,35 @@ def find_path(corrected_map: Map) -> List[int]:
       arrow (arrows that only touch at a shared node do not count as
       crossings). You can check it visually with ``visualize_path``.
     """
+    path = []
+    used_nodes = []
+
+    active_node = random.randrange(0,len(corrected_map)-1)  #implemented to choose a random starting point
+    used_nodes.append(active_node)
+    path.append(active_node)
+
+    while len(path) <= len(corrected_map):
+
+        for i in range(len(corrected_map)):
+
+
+            next_node = None #variable used to store the next node of the path
+            distance = math.dist(corrected_map[active_node], corrected_map[i])
+                        
+            if i == 0 or minimum_distance > distance or i not in used_nodes:
+                
+                minimum_distance = distance
+                next_node = i
+      
+            else:
+                continue
+
+            active_node = next_node
+            used_nodes.append(active_node)
+            path.append(active_node)
+
+    return path
+    
     raise NotImplementedError("Step 5 (path finding) is yours to implement")
 
 
