@@ -163,15 +163,23 @@ def find_path(corrected_map: Map) -> List[int]:
     used_nodes.append(active_node)
     path.append(active_node)
 
-    while len(path) <= len(corrected_map):
+    path = []
+    used_nodes = []
+
+    active_node = random.randrange(0,len(corrected_map)-1)  #implemented to choose a random starting point
+    used_nodes.append(active_node)
+    path.append(active_node)
+
+    while len(path) < len(corrected_map):
+
+        next_node = None #variable used to store the next node of the path
+        minimum_distance = 0
 
         for i in range(len(corrected_map)):
 
-
-            next_node = None #variable used to store the next node of the path
             distance = math.dist(corrected_map[active_node], corrected_map[i])
-                        
-            if i == 0 or minimum_distance > distance or i not in used_nodes:
+
+            if  (minimum_distance == 0 or minimum_distance > distance) and i not in used_nodes:
                 
                 minimum_distance = distance
                 next_node = i
@@ -179,9 +187,9 @@ def find_path(corrected_map: Map) -> List[int]:
             else:
                 continue
 
-            active_node = next_node
-            used_nodes.append(active_node)
-            path.append(active_node)
+        active_node = next_node
+        used_nodes.append(active_node)
+        path.append(active_node)
 
     return path
     
