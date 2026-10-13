@@ -20,7 +20,7 @@ from visualization import (
     visualize_path,
 )
 
-import random
+import random #added for the logic of the function find_path()
 
 # ---------------------------------------------------------------------------
 # Parameters of the run.
