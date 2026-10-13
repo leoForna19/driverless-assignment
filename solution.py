@@ -77,12 +77,7 @@ def associate(map_points: Map, observations: List[Point]) -> List[Tuple[int, int
         
         for i in range(len(map_points)):
             
-            if i==0:
-                distance = math.dist(observations[j],map_points[i])
-                minimum_distance = distance
-                map_index= i
-            
-            elif minimum_distance > math.dist(observations[j],map_points[i]) or i not in mapped_points:
+            if i == 0 or minimum_distance > math.dist(observations[j],map_points[i]) or i not in mapped_points:
                 distance = math.dist(observations[j],map_points[i])
                 minimum_distance = distance
                 map_index= i
