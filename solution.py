@@ -29,9 +29,9 @@ import random #added by the contributor
 # evaluated with different values (especially with different random seeds).
 # ---------------------------------------------------------------------------
 NUM_POINTS = 20
-X_RANGE = 20
-Y_RANGE = 20
-MAP_SEED = 43
+X_RANGE = 20.0
+Y_RANGE = 20.0
+MAP_SEED = 42
 
 NOISE_STD = 0.25
 OBSERVATION_RATE = 0.8
