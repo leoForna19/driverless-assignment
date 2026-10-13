@@ -123,13 +123,15 @@ def correct_map(
 
     for i in range(len(map_points)):
 
+        map_point = map_points[i]
+
         if i in associations_dict:
 
             observation_point = observations[associations_dict[i]]
             corrected_map.append(tuple((map_point[k] + observation_point[k])/2 for k in range(len(map_point))))
         
         else:
-            corrected_map.append(map_points[i])
+            corrected_map.append(map_point)
 
     return corrected_map
     
