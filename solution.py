@@ -20,6 +20,8 @@ from visualization import (
     visualize_path,
 )
 
+import random
+
 # ---------------------------------------------------------------------------
 # Parameters of the run.
 #
