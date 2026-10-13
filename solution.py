@@ -91,6 +91,11 @@ def associate(map_points: Map, observations: List[Point]) -> List[Tuple[int, int
         associations.append((map_index, j))
                     
     return associations
+
+    '''KNOWN PROBLEMS
+    if we have a high density of points (es. 100 points with X_RANGE = Y_RANGE = 20)
+    the association of some point could be faulty.
+    Hypotheses: intrinsic imprecision of the float type, iprecision of the dist() function '''
     
     raise NotImplementedError("Step 3 (data association) is yours to implement")
 
